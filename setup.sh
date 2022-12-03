@@ -72,6 +72,26 @@ add_lint_files() {
     echo "module.exports = { extends: ['@commitlint/config-conventional'] }" >commitlint.config.js
     echo '{ "extends": ["@rocketseat/eslint-config/react"] }' >.eslintrc.json
     echo -e "node_modules\nsrc/**/*.css" >.eslintignore
+    echo -e '{
+    "arrowParens": "always",
+    "bracketSpacing": true,
+    "htmlWhitespaceSensitivity": "ignore",
+    "insertPragma": false,
+    "jsxSingleQuote": false,
+    "printWidth": 80,
+    "proseWrap": "always",
+    "quoteProps": "as-needed",
+    "requirePragma": false,
+    "semi": false,
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "all",
+    "useTabs": false,
+    "vueIndentScriptAndStyle": false,
+    "embeddedLanguageFormatting": "off",
+    "endOfLine": "auto"
+}'> .prettierrc.json
+    echo -e 'node_modules\nbuild\ndist'>.prettierignore
     echo -e "${BGreen}Lint files has been addded!"
 }
 
