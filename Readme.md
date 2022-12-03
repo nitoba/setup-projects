@@ -1,6 +1,5 @@
 <p align="center">
   <img  src=".github/preview.png" alt="preview">
-
 </p>
 
 <p align="center">
@@ -55,6 +54,10 @@ curl -o- https://raw.githubusercontent.com/NitoBa/setup-projects/main/setup.sh |
 wget -q0- https://raw.githubusercontent.com/NitoBa/setup-projects/main/setup.sh | bash
 ```
 
+<p align="center">
+  <img  src=".github/preview.gif" alt="preview">
+</p>
+
 ## 📝 License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
@@ -62,3 +65,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ---
 
 Made with 💜 by [Bruno Alves](https://nito-dev.vercel.app/) 👋
+
