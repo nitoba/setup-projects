@@ -6,17 +6,6 @@ BGreen='\033[1;32m'  # Green
 BYellow='\033[1;33m' # Yellow
 BPurple='\033[1;35m' # Purple
 
-unameOut="$(uname -s)"
-case "${unameOut}" in
-Linux*) machine=Linux ;;
-Darwin*) machine=Mac ;;
-CYGWIN*) machine=Cygwin ;;
-MINGW*) machine=MinGw ;;
-*) machine="UNKNOWN:${unameOut}" ;;
-esac
-
-echo ${machine}
-
 echo -e "${BPurple}Initiallizing configuration ..."
 
 verify_jq_linux() {
@@ -42,17 +31,14 @@ verify_jq_windows() {
     echo -e "${BYellow}if you already have jq installed following the installation"
 }
 
-if [ $machine -eq "Linux" ]; then
-    verify_jq_windows
-fi
-
-if [ $machine -eq "Mac" ]; then
-    verify_jq_mac_os
-fi
-
-if [ $machine -eq "Cygwin" -o $machine -eq "Cygwin" ]; then
-    verify_jq_mac_os
-fi
+unameOut="$(uname -s)"
+case "${unameOut}" in
+Linux*) verify_jq_linux ;;
+Darwin*) verify_jq_mac_os ;;
+CYGWIN*) verify_jq_windows ;;
+MINGW*) verify_jq_windows ;;
+*) echo -e "${BRed}UNKNOWN:${unameOut}" && exit 1 ;;
+esac
 
 echo -e "${BPurple}Installing following depecies as dev ..."
 echo -e "${BGreen}@commitlint/cli @commitlint/config-conventional @rocketseat/eslint-config commitizen eslint husky prettier"
