@@ -48,7 +48,7 @@ npm install
 ## Installing in your project
 
 ```bash
-curl -o https://raw.githubusercontent.com/NitoBa/setup-projects/main/setup.sh | bash
+curl -o- https://raw.githubusercontent.com/NitoBa/setup-projects/main/setup.sh | bash
 ```
 
 ```bash
@@ -62,4 +62,3 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ---
 
 Made with 💜 by [Bruno Alves](https://nito-dev.vercel.app/) 👋
-
