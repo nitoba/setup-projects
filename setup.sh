@@ -22,11 +22,15 @@ verify_jq_mac_os() {
 }
 
 verify_jq_windows() {
-    echo -e "${BYellow}Looks like that you are using Windows, please install the package with the following command"
-    echo -e "${BGreen}choco install jq"
-    echo -e "${BGreen}and run this installation again"
+    IS_CHOCO="$(choco -v)"
 
-    echo -e "${BYellow}if you already have jq installed following the installation"
+    if [ "$IS_CHOCO" == "" ]; then
+        echo -e "\n"
+        echo -e "${BRed}Seems Chocolatey is not installed, installing now following: ${BYellow}https://chocolatey.org/install${BYellow}"
+        echo -e "${BRed}After that, run ${BGreen}choco install jq${BGreen} ${BRed}to continue installing the dependencies ..."
+        echo -e "${BRed}Run this installation again after it has been installed"
+        exit 1
+    fi
 }
 
 verify_os_is_running() {
@@ -43,6 +47,7 @@ verify_os_is_running() {
 
 verify_package_json_exists() {
     if [ -f "package.json" ]; then
+        echo -e "\n"
         echo -e "${BGreen}This is a valid Node project"
     else
         echo -e "${BRed}package.json does not found, please run this script in the root of your Node project"
@@ -51,12 +56,14 @@ verify_package_json_exists() {
 }
 
 install_dependencies() {
+    echo -e "\n"
     echo -e "${BPurple}Installing following depecies as dev ..."
     echo -e "${BGreen}@commitlint/cli @commitlint/config-conventional @rocketseat/eslint-config commitizen eslint husky prettier"
     npm i @commitlint/cli @commitlint/config-conventional @rocketseat/eslint-config commitizen eslint husky prettier -D
 }
 
 update_package_json() {
+    echo -e "\n"
     echo -e "${BPurple}Adding script in your package.json ..."
     echo "$(jq '.scripts += {"prepare": "husky install"}' package.json)" >package.json
     echo "$(jq '.scripts += {"commit": "git-cz"}' package.json)" >package.json
@@ -68,6 +75,7 @@ update_package_json() {
 }
 
 add_lint_files() {
+    echo -e "\n"
     echo -e "${BPurple}Add lint config files ..."
     echo "module.exports = { extends: ['@commitlint/config-conventional'] }" >commitlint.config.js
     echo '{ "extends": ["@rocketseat/eslint-config/react"] }' >.eslintrc.json
@@ -76,6 +84,7 @@ add_lint_files() {
 }
 
 setup_husky() {
+    echo -e "\n"
     echo -e "${BPurple}Initiallizing husky ..."
     npm run prepare
     npx husky add .husky/pre-commit "npx lint-staged"
@@ -86,10 +95,10 @@ setup_husky() {
 echo -e "${BPurple}Initiallizing configuration ..."
 
 verify_os_is_running
-verify_package_json_exists
-install_dependencies
-update_package_json
-add_lint_files
-setup_husky
+# verify_package_json_exists
+# install_dependencies
+# update_package_json
+# add_lint_files
+# setup_husky
 
 echo -e "${BYellow}Trying to run command 'git add .' and 'npm run commit' to check configuration"
