@@ -1,4 +1,9 @@
 <p align="center">
+  <img  src=".github/preview.png" alt="preview">
+
+</p>
+
+<p align="center">
   <img  src="https://img.shields.io/static/v1?label=license&message=MIT&color=131313&labelColor=323A46" alt="License">
 
 <img src="https://img.shields.io/github/forks/NitoBa/profile-website?label=forks&message=MIT&color=131313&labelColor=323A46" alt="Forks">
@@ -49,7 +54,6 @@ curl -o https://raw.githubusercontent.com/NitoBa/setup-projects/main/setup.sh | 
 ```bash
 wget -q0- https://raw.githubusercontent.com/NitoBa/setup-projects/main/setup.sh | bash
 ```
-
 
 ## 📝 License
 
