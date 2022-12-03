@@ -6,14 +6,56 @@ BGreen='\033[1;32m'  # Green
 BYellow='\033[1;33m' # Yellow
 BPurple='\033[1;35m' # Purple
 
+unameOut="$(uname -s)"
+case "${unameOut}" in
+Linux*) machine=Linux ;;
+Darwin*) machine=Mac ;;
+CYGWIN*) machine=Cygwin ;;
+MINGW*) machine=MinGw ;;
+*) machine="UNKNOWN:${unameOut}" ;;
+esac
+
+echo ${machine}
+
 echo -e "${BPurple}Initiallizing configuration ..."
 
-if [ $(dpkg-query -W -f='${Status}' jq 2>/dev/null | grep -c "ok installed") -eq 0 ]; then
-    sudo apt install jq
-    echo -e "${BYellow}Installing jq ..."
+verify_jq_linux() {
+    if [ $(dpkg-query -W -f='${Status}' jq 2>/dev/null | grep -c "ok installed") -eq 0 ]; then
+        echo -e "${BYellow}Installing jq ..."
+        sudo apt install jq
+    fi
+}
+
+verify_jq_mac_os() {
+    if brew list jq &>/dev/null; then
+        echo "jq is already installed"
+    else
+        brew install jq && echo "jq is installed"
+    fi
+}
+
+verify_jq_windows() {
+    echo -e "${BYellow}Looks like that you are using Windows, please install the package with the following command"
+    echo -e "${BGreen}choco install jq"
+    echo -e "${BGreen}and run this installation again"
+
+    echo -e "${BYellow}if you already have jq installed following the installation"
+}
+
+if [ $machine -eq "Linux" ]; then
+    verify_jq_windows
 fi
 
-echo -e "${BPurple}Installing following depecies ..."
+if [ $machine -eq "Mac" ]; then
+    verify_jq_mac_os
+fi
+
+if [ $machine -eq "Cygwin" -o $machine -eq "Cygwin" ]; then
+    verify_jq_mac_os
+fi
+
+echo -e "${BPurple}Installing following depecies as dev ..."
+echo -e "${BGreen}@commitlint/cli @commitlint/config-conventional @rocketseat/eslint-config commitizen eslint husky prettier"
 npm i @commitlint/cli @commitlint/config-conventional @rocketseat/eslint-config commitizen eslint husky prettier -D
 
 echo -e "${BPurple}Add script in your package.json ..."
