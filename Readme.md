@@ -55,6 +55,18 @@ curl -o- https://raw.githubusercontent.com/NitoBa/setup-projects/main/setup.sh |
 wget -q0- https://raw.githubusercontent.com/NitoBa/setup-projects/main/setup.sh | bash
 ```
 
+### Recommended for Windows
+
+This script use [jq]() as dependecie, then
+
+> First things first, is important that you have installed chocolatey package manager.
+> After that, execute this command: `choco install jq`
+
+
+```bash
+curl -o- https://raw.githubusercontent.com/NitoBa/setup-projects/main/setup.sh | sh
+```
+
 ## 📝 License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
@@ -62,3 +74,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ---
 
 Made with 💜 by [Bruno Alves](https://nito-dev.vercel.app/) 👋
+

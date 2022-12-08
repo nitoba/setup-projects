@@ -9,7 +9,7 @@ BPurple='\033[1;35m' # Purple
 verify_jq_linux() {
     if [ $(dpkg-query -W -f='${Status}' jq 2>/dev/null | grep -c "ok installed") -eq 0 ]; then
         echo -e "${BYellow}Installing jq ..."
-        sudo apt install jq
+        sudo apt install jq -y
     fi
 }
 
