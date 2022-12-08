@@ -1,6 +1,5 @@
 <p align="center">
   <img  src=".github/preview.png" alt="preview">
-
 </p>
 
 <p align="center">
@@ -57,7 +56,7 @@ wget -q0- https://raw.githubusercontent.com/NitoBa/setup-projects/main/setup.sh 
 
 ### Recommended for Windows
 
-This script use [jq]() as dependecie, then
+This script use [jq](https://stedolan.github.io/jq/) as dependecie, then
 
 > First things first, is important that you have installed chocolatey package manager.
 > After that, execute this command: `choco install jq`
