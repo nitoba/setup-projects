@@ -115,10 +115,10 @@ setup_husky() {
 echo -e "${BPurple}Initiallizing configuration ..."
 
 verify_os_is_running
-# verify_package_json_exists
-# install_dependencies
-# update_package_json
-# add_lint_files
-# setup_husky
+verify_package_json_exists
+install_dependencies
+update_package_json
+add_lint_files
+setup_husky
 
 echo -e "${BYellow}Trying to run command 'git add .' and 'npm run commit' to check configuration"
